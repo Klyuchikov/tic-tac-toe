@@ -14,6 +14,7 @@ const statusDisplay = document.getElementById('status');
 const cells = document.querySelectorAll('.cell');
 const resetButton = document.getElementById('reset');
 const resetScoresButton = document.getElementById('reset-scores');
+const backToModeButton = document.getElementById('back-to-mode');
 const xWinsDisplay = document.getElementById('x-wins');
 const oWinsDisplay = document.getElementById('o-wins');
 const drawsDisplay = document.getElementById('draws');
@@ -45,7 +46,7 @@ function handleCellClick(event) {
     const cell = event.target;
     const index = parseInt(cell.getAttribute('data-index'));
 
-    if (board[index] !== null || !gameActive || currentPlayer === 'O') {
+    if (board[index] !== null || !gameActive || (gameMode === 'computer' && currentPlayer === 'O')) {
         return;
     }
 
@@ -97,6 +98,12 @@ function computerMove() {
     makeMove(randomIndex);
 }
 
+function checkWinner() {
+    return winningConditions.find(condition => {
+        return condition.every(index => board[index] === currentPlayer);
+    });
+}
+
 function checkDraw() {
     return board.every(cell => cell !== null);
 }
@@ -120,7 +127,7 @@ function updateStatus() {
 function selectMode(mode) {
     gameMode = mode;
     modeSelection.style.display = 'none';
-    game.style.display = 'block';
+    game.style.display = '';
     initGame();
 }
 
@@ -135,9 +142,17 @@ function resetScores() {
     updateScores();
 }
 
+function backToModeSelection() {
+    gameMode = null;
+    initGame();
+    modeSelection.style.display = 'block';
+    game.style.display = 'none';
+}
+
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
 resetButton.addEventListener('click', resetGame);
 resetScoresButton.addEventListener('click', resetScores);
+backToModeButton.addEventListener('click', backToModeSelection);
 vsHumanButton.addEventListener('click', () => selectMode('human'));
 vsComputerButton.addEventListener('click', () => selectMode('computer'));
 
