@@ -9,6 +9,11 @@
 <body>
     <h1>Крестики-Нолики</h1>
     <div id="status">Ход игрока X</div>
+    <div id="scores">
+        <div id="x-wins">Побед X: 0</div>
+        <div id="o-wins">Побед O: 0</div>
+        <div id="draws">Ничьих: 0</div>
+    </div>
     <div id="board">
         <div class="cell" data-index="0"></div>
         <div class="cell" data-index="1"></div>
@@ -21,6 +26,7 @@
         <div class="cell" data-index="8"></div>
     </div>
     <button id="reset">Новая игра</button>
+    <button id="reset-scores">Сбросить счет</button>
     <script src="script.js"></script>
 </body>
 </html>

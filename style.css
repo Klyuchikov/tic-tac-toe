@@ -19,6 +19,15 @@ h1 {
     font-weight: bold;
 }
 
+#scores {
+    display: flex;
+    justify-content: space-around;
+    width: 300px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 #board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
@@ -49,6 +58,10 @@ h1 {
     cursor: not-allowed;
 }
 
+.cell.winning {
+    background-color: #90EE90;
+}
+
 #reset {
     padding: 10px 20px;
     font-size: 18px;
@@ -62,4 +75,48 @@ h1 {
 
 #reset:hover {
     background-color: #45a049;
+}
+
+#reset-scores {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+#reset-scores:hover {
+    background-color: #d32f2f;
+}
+
+@media (max-width: 600px) {
+    #board {
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 80px);
+        gap: 3px;
+    }
+
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 36px;
+    }
+
+    #status {
+        font-size: 20px;
+    }
+
+    #scores {
+        width: 250px;
+        font-size: 16px;
+    }
+
+    #reset, #reset-scores {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
 }

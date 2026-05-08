@@ -1,10 +1,17 @@
 const board = Array(9).fill(null);
 let currentPlayer = 'X';
 let gameActive = true;
+let xWins = 0;
+let oWins = 0;
+let draws = 0;
 
 const statusDisplay = document.getElementById('status');
 const cells = document.querySelectorAll('.cell');
 const resetButton = document.getElementById('reset');
+const resetScoresButton = document.getElementById('reset-scores');
+const xWinsDisplay = document.getElementById('x-wins');
+const oWinsDisplay = document.getElementById('o-wins');
+const drawsDisplay = document.getElementById('draws');
 
 const winningConditions = [
     [0, 1, 2],
@@ -22,9 +29,10 @@ function initGame() {
     currentPlayer = 'X';
     gameActive = true;
     updateStatus();
+    updateScores();
     cells.forEach(cell => {
         cell.textContent = '';
-        cell.classList.remove('taken');
+        cell.classList.remove('taken', 'winning');
     });
 }
 
@@ -40,15 +48,25 @@ function handleCellClick(event) {
     cell.textContent = currentPlayer;
     cell.classList.add('taken');
 
-    if (checkWinner()) {
+    const winningCondition = checkWinner();
+    if (winningCondition) {
         statusDisplay.textContent = `Игрок ${currentPlayer} победил!`;
         gameActive = false;
+        highlightWinningCells(winningCondition);
+        if (currentPlayer === 'X') {
+            xWins++;
+        } else {
+            oWins++;
+        }
+        updateScores();
         return;
     }
 
     if (checkDraw()) {
         statusDisplay.textContent = 'Ничья!';
         gameActive = false;
+        draws++;
+        updateScores();
         return;
     }
 
@@ -57,13 +75,25 @@ function handleCellClick(event) {
 }
 
 function checkWinner() {
-    return winningConditions.some(condition => {
+    return winningConditions.find(condition => {
         return condition.every(index => board[index] === currentPlayer);
     });
 }
 
 function checkDraw() {
     return board.every(cell => cell !== null);
+}
+
+function highlightWinningCells(condition) {
+    condition.forEach(index => {
+        cells[index].classList.add('winning');
+    });
+}
+
+function updateScores() {
+    xWinsDisplay.textContent = `Побед X: ${xWins}`;
+    oWinsDisplay.textContent = `Побед O: ${oWins}`;
+    drawsDisplay.textContent = `Ничьих: ${draws}`;
 }
 
 function updateStatus() {
@@ -74,7 +104,15 @@ function resetGame() {
     initGame();
 }
 
+function resetScores() {
+    xWins = 0;
+    oWins = 0;
+    draws = 0;
+    updateScores();
+}
+
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
 resetButton.addEventListener('click', resetGame);
+resetScoresButton.addEventListener('click', resetScores);
 
 initGame();
