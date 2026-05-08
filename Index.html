@@ -7,14 +7,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="mode-selection">
+    <div id="app">
+        <div id="mode-selection">
         <h1>Выберите режим игры</h1>
         <button id="vs-human">Играть с другом</button>
         <button id="vs-computer">Играть с компьютером</button>
     </div>
     <div id="game" style="display: none;">
         <h1>Крестики-Нолики</h1>
-    <div id="status">Ход игрока X</div>
+        <div id="computer-settings" class="computer-settings" style="display: none;">
+            <label for="difficulty-select">Сложность:</label>
+            <select id="difficulty-select">
+                <option value="easy">Легкий</option>
+                <option value="medium">Средний</option>
+                <option value="hard">Сложный</option>
+            </select>
+        </div>
+        <div id="status">Ход игрока X</div>
     <div id="scores">
         <div id="x-wins">Побед X: 0</div>
         <div id="o-wins">Побед O: 0</div>
@@ -40,6 +49,7 @@
             <button id="back-to-mode">Выбрать режим</button>
         </div>
     </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

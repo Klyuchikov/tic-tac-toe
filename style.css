@@ -9,8 +9,21 @@ body {
     background-color: #f0f0f0;
 }
 
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
 #mode-selection {
     text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 #mode-selection h1 {
@@ -38,9 +51,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: min(100%, 420px);
+    width: 100%;
+    max-width: 420px;
     padding: 20px;
     box-sizing: border-box;
+    margin: 0 auto;
+    text-align: center;
 }
 
 h1 {
@@ -55,11 +71,19 @@ h1 {
 
 #scores {
     display: flex;
-    justify-content: space-around;
-    width: 300px;
-    margin-bottom: 20px;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 20px;
     font-size: 18px;
     font-weight: bold;
+    text-align: center;
+}
+
+#scores > div {
+    flex: none;
+    min-width: 90px;
 }
 
 #board {
@@ -67,7 +91,8 @@ h1 {
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
     gap: 5px;
-    margin-bottom: 20px;
+    justify-content: center;
+    margin: 0 auto 20px;
 }
 
 .cell {
@@ -154,6 +179,38 @@ h1 {
 
 #back-to-mode:hover {
     background-color: #455A64;
+}
+
+#computer-settings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+#computer-settings label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#difficulty-select {
+    padding: 10px 14px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    cursor: pointer;
+}
+
+#difficulty-select:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
 }
 
 @media (max-width: 600px) {
