@@ -9,6 +9,30 @@ body {
     background-color: #f0f0f0;
 }
 
+#mode-selection {
+    text-align: center;
+}
+
+#mode-selection h1 {
+    margin-bottom: 30px;
+}
+
+#vs-human, #vs-computer {
+    padding: 15px 30px;
+    font-size: 18px;
+    margin: 0 10px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#vs-human:hover, #vs-computer:hover {
+    background-color: #1976D2;
+}
+
 h1 {
     margin-bottom: 20px;
 }

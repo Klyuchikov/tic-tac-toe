@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Крестики-Нолики</h1>
+    <div id="mode-selection">
+        <h1>Выберите режим игры</h1>
+        <button id="vs-human">Играть с другом</button>
+        <button id="vs-computer">Играть с компьютером</button>
+    </div>
+    <div id="game" style="display: none;">
+        <h1>Крестики-Нолики</h1>
     <div id="status">Ход игрока X</div>
     <div id="scores">
         <div id="x-wins">Побед X: 0</div>
@@ -27,6 +33,7 @@
     </div>
     <button id="reset">Новая игра</button>
     <button id="reset-scores">Сбросить счет</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

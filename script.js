@@ -4,7 +4,12 @@ let gameActive = true;
 let xWins = 0;
 let oWins = 0;
 let draws = 0;
+let gameMode = null; // 'human' or 'computer'
 
+const modeSelection = document.getElementById('mode-selection');
+const game = document.getElementById('game');
+const vsHumanButton = document.getElementById('vs-human');
+const vsComputerButton = document.getElementById('vs-computer');
 const statusDisplay = document.getElementById('status');
 const cells = document.querySelectorAll('.cell');
 const resetButton = document.getElementById('reset');
@@ -40,13 +45,23 @@ function handleCellClick(event) {
     const cell = event.target;
     const index = parseInt(cell.getAttribute('data-index'));
 
-    if (board[index] !== null || !gameActive) {
+    if (board[index] !== null || !gameActive || currentPlayer === 'O') {
         return;
     }
 
+    makeMove(index);
+
+    if (gameMode === 'computer' && gameActive && currentPlayer === 'O') {
+        setTimeout(() => {
+            computerMove();
+        }, 500); // задержка для реализма
+    }
+}
+
+function makeMove(index) {
     board[index] = currentPlayer;
-    cell.textContent = currentPlayer;
-    cell.classList.add('taken');
+    cells[index].textContent = currentPlayer;
+    cells[index].classList.add('taken');
 
     const winningCondition = checkWinner();
     if (winningCondition) {
@@ -74,10 +89,12 @@ function handleCellClick(event) {
     updateStatus();
 }
 
-function checkWinner() {
-    return winningConditions.find(condition => {
-        return condition.every(index => board[index] === currentPlayer);
-    });
+function computerMove() {
+    const availableCells = board.map((cell, index) => cell === null ? index : null).filter(index => index !== null);
+    if (availableCells.length === 0) return;
+
+    const randomIndex = availableCells[Math.floor(Math.random() * availableCells.length)];
+    makeMove(randomIndex);
 }
 
 function checkDraw() {
@@ -100,6 +117,13 @@ function updateStatus() {
     statusDisplay.textContent = `Ход игрока ${currentPlayer}`;
 }
 
+function selectMode(mode) {
+    gameMode = mode;
+    modeSelection.style.display = 'none';
+    game.style.display = 'block';
+    initGame();
+}
+
 function resetGame() {
     initGame();
 }
@@ -114,5 +138,7 @@ function resetScores() {
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
 resetButton.addEventListener('click', resetGame);
 resetScoresButton.addEventListener('click', resetScores);
+vsHumanButton.addEventListener('click', () => selectMode('human'));
+vsComputerButton.addEventListener('click', () => selectMode('computer'));
 
-initGame();
+// initGame(); // убрано, игра начинается после выбора режима
