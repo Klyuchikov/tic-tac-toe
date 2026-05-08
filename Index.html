@@ -7,39 +7,43 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="mode-selection">
-        <h1>Выберите режим игры</h1>
-        <button id="vs-human">Играть с другом</button>
-        <button id="vs-computer">Играть с компьютером</button>
-    </div>
-    <div id="game" style="display: none;">
-        <h1>Крестики-Нолики</h1>
-    <div id="status">Ход игрока X</div>
-    <div id="scores">
-        <div id="x-wins">Побед X: 0</div>
-        <div id="o-wins">Побед O: 0</div>
-        <div id="draws">Ничьих: 0</div>
-    </div>
-    <div id="board">
-        <div class="cell" data-index="0"></div>
-        <div class="cell" data-index="1"></div>
-        <div class="cell" data-index="2"></div>
-        <div class="cell" data-index="3"></div>
-        <div class="cell" data-index="4"></div>
-        <div class="cell" data-index="5"></div>
-        <div class="cell" data-index="6"></div>
-        <div class="cell" data-index="7"></div>
-        <div class="cell" data-index="8"></div>
-    </div>
-    <div id="controls">
-        <div class="control-row">
-            <button id="reset">Новая игра</button>
-            <button id="reset-scores">Сбросить счет</button>
+    <div id="app">
+        <div id="mode-selection">
+            <h1>Выберите режим игры</h1>
+            <div class="mode-buttons">
+                <button id="vs-human">Играть с другом</button>
+                <button id="vs-computer">Играть с компьютером</button>
+            </div>
         </div>
-        <div class="control-row">
-            <button id="back-to-mode">Выбрать режим</button>
+        <div id="game" style="display: none;">
+            <h1>Крестики-Нолики</h1>
+            <div id="status">Ход игрока X</div>
+            <div id="scores">
+                <div class="score-card" id="x-wins">Побед X: 0</div>
+                <div class="score-card" id="o-wins">Побед O: 0</div>
+                <div class="score-card" id="draws">Ничьих: 0</div>
+            </div>
+            <div id="board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+            <div id="controls">
+                <div class="control-row">
+                    <button id="reset">Новая игра</button>
+                    <button id="reset-scores">Сбросить счет</button>
+                </div>
+                <div class="control-row">
+                    <button id="back-to-mode">Выбрать режим</button>
+                </div>
+            </div>
         </div>
-    </div>
     </div>
     <script src="script.js"></script>
 </body>
